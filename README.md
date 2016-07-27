@@ -2,7 +2,7 @@
 
 H5原生提供的日期选择功能体验不好, 而且各种坑, 于是便写了这个基于Angularjs的时间区间选择器. 感谢[@liqunyang]()的构建样式代码.
 
-线上DEMO: [http://www.madcoder.cn/demos/ng-daterange-picker/examples/index.html](http://www.madcoder.cn/demos/ng-daterange-picker/examples/index.html)
+线上DEMO: [https://www.madcoder.cn/demos/ng-daterange-picker/example/index.html](https://www.madcoder.cn/demos/ng-daterange-picker/example/index.html)
 
 ![Daterange Picker](https://github.com/gcaufy/ng-daterange-picker/raw/master/screenshots/daterangepicker.png)
 
