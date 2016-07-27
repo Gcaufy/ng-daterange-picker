@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px">
+<head>
+    <title>ng-bootstrap-datepicker</title>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link href="../dist/css/ng-daterange-picker.min.css" rel="stylesheet">
+    <style>
+    body {
+        background-color: #efeff4;
+        font: 14px/1.5 '\5FAE\8F6F\96C5\9ED1';
+        color: #000;
+        -webkit-text-size-adjust: 100%!important;
+    }   
+    a, img {
+        -webkit-touch-callout: none;
+    }
+    a {
+        color: #007aff;
+        text-decoration: none;
+    }
+    body, a, img, label, button, input, textarea, select {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }  
+    .page-date-ft .bottom-bet-ele {
+        padding-left: .45rem;
+        line-height: .2rem;
+        text-align: left;
+    }
+    .fix-bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: #fff;
+    }
+    .bottom-bet {
+        position: relative;
+        background: #fff;
+        padding-top: .09rem;
+        padding-bottom: .09rem;
+        height: .62rem;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .bottom-bet-ele {
+        position: relative;
+        width: 100%;
+        padding-left: .1rem;
+        padding-right: 1.5rem;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        text-align: center;
+    }
+    .bottom-bet .cm-btn-primary {
+        position: absolute;
+        top: .09rem;
+        right: .1rem;
+        width: 1.25rem;
+        z-index: 10;
+    }
+    .cm-btn {
+        display: inline-block;
+        font-size: .14rem;
+        height: .28rem;
+        line-height: .28rem;
+        border-radius: .03rem;
+        text-align: center;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .cm-btn-large {
+        font-size: .18rem;
+        height: .42rem;
+        line-height: .42rem;
+    }
+    .cm-btn-primary {
+        color: #fff;
+        border: 1px solid #04be02;
+        background: #04be02;
+    }
+    </style>
+</head>
+
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <ng-daterange-picker ng-dp-model="mydate" ng-dp-months="3" ng-dp-start-date="today" ng-dp-days="45" ng-dp-disable-old="1" ng-dp-evt-click="click" ng-dp-evt-select="select"></ng-daterange-picker>
+
+    <div class="page-date-ft fix-bottom">
+        <div class="bottom-bet">
+          <div class="bottom-bet-ele">
+            起 <span ng-bind="mydate.start ? ((mydate.start | date:'yyyy.MM.dd')) : ''"></span>
+            <br>止 <span ng-bind="mydate.end ? ((mydate.end | date:'yyyy.MM.dd')) : ''"></span>
+          </div>
+          <a href="javascript:void(0);" class="cm-btn cm-btn-primary cm-btn-large">确定</a>
+        </div>
+      </div>
+</div>
+
+
+
+
+<script src="http://cdn.bootcss.com/angular.js/1.5.0-beta.0/angular.min.js"></script>
+
+
+<script src="../dist/js/ng-daterange-picker.min.js"></script>
+
+<script src="app.js"></script>
+
+
+</body>
+</html>

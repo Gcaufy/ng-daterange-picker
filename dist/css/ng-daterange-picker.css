@@ -1,0 +1,144 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+.page-date {
+  background-color: #efeff4;
+  font: 14px/1.5 '\5FAE\8F6F\96C5\9ED1';
+  color: #000;
+  -webkit-text-size-adjust: 100%!important;
+  padding-top: 0.17rem;
+  padding-bottom: 0.62rem;
+}
+.page-date table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+.page-date th,
+.page-date td {
+  margin: 0px;
+  padding: 0px;
+}
+.page-date-hd {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: #f7f7f7;
+}
+.page-date-bd {
+  background-color: #fff;
+}
+.page-date-ft .bottom-bet-ele {
+  padding-left: 0.15rem;
+  line-height: 0.2rem;
+  text-align: left;
+}
+.table-week {
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+}
+.table-week tr {
+  height: 0.17rem;
+}
+.table-week td {
+  position: relative;
+  color: #000;
+}
+.table-week td:after {
+  background: #dddddd;
+  content: "";
+  position: absolute;
+  z-index: 0;
+  background: #e4e4e4;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  transform: scaleY(0.5);
+  transform-origin: 0 bottom;
+}
+.table-week td:first-child,
+.table-week td:last-child {
+  color: #979797;
+}
+.table-day {
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  font-size: 0.18rem;
+  color: #000;
+}
+.table-day tr {
+  height: 0.44rem;
+}
+.table-day tr td:first-child,
+.table-day tr td:last-child {
+  color: #f27c75;
+}
+.table-day tr td.month {
+  color: #000;
+}
+.table-day td {
+  position: relative;
+}
+.table-day td:after {
+  background: #dddddd;
+  content: "";
+  position: absolute;
+  z-index: 0;
+  background: #e4e4e4;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  transform: scaleY(0.5);
+  transform-origin: 0 bottom;
+}
+.table-day td.empty:after {
+  display: none;
+}
+.table-day td.active {
+  position: relative;
+  background: #8fb5dd;
+  color: #fff;
+}
+.table-day td.active.start,
+.table-day td.active.end {
+  background: #76a1ce;
+}
+.table-day td.active.start:before {
+  content: "起";
+}
+.table-day td.active.end:before {
+  content: "止";
+}
+.table-day td.active.start:before,
+.table-day td.active.end:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 0.12rem;
+  transform: scale(0.66666667);
+}
+.table-day td.month {
+  font-size: 0.12rem;
+}
+.table-day td.old {
+  color: #dcdcdc;
+}
+.table-day td.today {
+  position: relative;
+}
+.table-day td.today:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "今天";
+  color: #f27c75;
+  font-size: 0.12rem;
+  transform: scale(0.66666667);
+}

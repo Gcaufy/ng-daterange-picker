@@ -1,0 +1,207 @@
+//--------------------------------------------------------------------------
+// @descr：日期选择
+// @author：liqunyang
+// @date：2016-06-13
+//--------------------------------------------------------------------------
+
+//---------- @单位变量 ----------
+@unit:200rem;
+@rem:200rem;
+@px2x: 2px;
+
+//------------ @variables ------------
+@var_color_grey: #aaa;
+@var_color_dark_grey: #666;
+@var_color_blue: #4c9afa;
+@var_color_dark: #242424;
+@var_color_border: #e4e4e4;
+@var_color_orange: #ff9b2f;
+
+
+//
+// @1px细线
+//--------------------------------------------------
+@var_light__gray:#dddddd;
+.Mx_hr_solid__base(@p:bottom, @t:0, @r:0, @b:0, @l:0, @color:@var_light__gray) {
+  content:"";
+  position:absolute;
+  z-index:0;
+  background:@color;
+}
+.Mx_hr_solid__base(@p:bottom, @t:0, @r:0, @b:0, @l:0, @color:@var_light__gray) when (@p = top) {
+  top:0;
+  right:@r;
+  left:@l;
+  height:1px;
+  transform:scaleY(0.5);
+  transform-origin:0 top;
+}
+.Mx_hr_solid__base(@p:bottom, @t:0, @r:0, @b:0, @l:0, @color:@var_light__gray) when (@p = right) {
+  top:@t;
+  bottom:@b;
+  right:0;
+  width:1px;
+  transform:scaleX(0.5);
+  transform-origin:right 0;
+}
+.Mx_hr_solid__base(@p:bottom, @t:0, @r:0, @b:0, @l:0, @color:@var_light__gray) when (@p = bottom) {
+  bottom:0;
+  right:@r;
+  left:@l;
+  height:1px;
+  transform:scaleY(0.5);
+  transform-origin:0 bottom;
+}
+.Mx_hr_solid__base(@p:bottom, @t:0, @r:0, @b:0, @l:0, @color:@var_light__gray) when (@p = left) {
+  top:@t;
+  bottom:@b;
+  left:0;
+  width:1px;
+  transform:scaleX(0.5);
+  transform-origin:left 0;
+}
+
+
+//---------- @时间戳变量 ----------
+@date : `( new Date() ).getTime()` ;
+@v : '?v=@{date}' ;
+
+body {margin: 0px; padding: 0px}
+
+//------------ @page-date ------------
+.page-date {
+
+  // reset
+  background-color:#efeff4; font:14px/1.5 '\5FAE\8F6F\96C5\9ED1'; color:#000; -webkit-text-size-adjust:100%!important;
+  table { border-collapse:collapse; border-spacing:0px;  }
+  th, td { margin:0px; padding:0px; }
+
+
+  padding-top: 34 / @rem;
+  padding-bottom: 124 / @rem;
+  &-hd {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: #f7f7f7;
+  }
+  &-bd {
+    background-color: #fff;
+  }
+  &-ft {
+    .bottom-bet-ele {
+      padding-left: 30 / @rem;
+      line-height: 40 / @rem;
+      text-align: left;
+    }
+  }
+}
+//#page-date
+
+
+//------------ @table-week ------------
+.table-week {
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+
+  tr {
+    height: 34 / @rem;
+  }
+  td {
+    position: relative;
+    color: #000;
+    &:after {
+      .Mx_hr_solid__base();
+      .Mx_hr_solid__base(bottom, 0, 0, 0, 0, @var_color_border);
+    }
+    &:first-child,
+    &:last-child {
+      color: #979797;
+    }
+  }
+}
+//#table-week
+
+//------------ @table-day ------------
+.table-day {
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  font-size: 36 / @rem;
+  color: #000;
+  .day-right {
+    
+  }
+  tr {
+    height: 88 / @rem;
+    td {
+      &:first-child,
+      &:last-child {
+        color: #f27c75;
+      }
+      &.month {
+        color: #000;
+      }
+    }
+  }
+  td {
+    position: relative;
+    &:after {
+      .Mx_hr_solid__base();
+      .Mx_hr_solid__base(bottom, 0, 0, 0, 0, @var_color_border);
+    }
+    &.empty {
+      &:after {
+        display: none;
+      }
+    }
+    &.active {
+      position: relative;
+      background: #8fb5dd;
+      color: #fff;
+      &.start,
+      &.end {
+        background: #76a1ce;
+      }
+      &.start:before {
+        content: "起";
+      }
+      &.end:before {
+        content: "止";
+      }
+      &.start:before,
+      &.end:before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: #fff;
+        font-size: 24 / @rem;
+        transform: scale(16/24);
+      }
+    }
+    &.month {
+      font-size: 24 / @rem;
+    }
+    &.old {
+      color: #dcdcdc;
+    }
+    &.today {
+      position: relative;
+      &:before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: "今天";
+        color: #f27c75;
+        font-size: 24 / @rem;
+        transform: scale(16/24);
+
+      }
+    }
+
+  }
+}
+//#table-day
