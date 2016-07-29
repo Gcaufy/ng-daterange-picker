@@ -97,7 +97,7 @@
                 var date = new Date(), today = date.getDate(), year = date.getFullYear(), month = date.getMonth(), 
                     months = [], monthData = {}, i = attrs.ngDpMonths, monthCount = i, startMonth = month, startYear = year, k, obj, tmp, startDate = null, fromDate = null, endDate = null;
 
-                var disableOld = !!(+attrs.ngDpDisableOld), showDays = attrs.ngDpDays;
+                var disableOld = !!(+attrs.ngDpDisableOld), disableOneDay = !!(+attrs.ngDpDisableOneday), showDays = attrs.ngDpDays;
 
                 date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
@@ -175,9 +175,9 @@
                         scope.ngDpModel.end = undefined;
                         scope.ngDpModel.start = select;
                     } else if (start) {
-                        if (select - start <= 0) {
+                        if (select - start < 0 || (select - start === 0 && disableOneDay))
                             scope.ngDpModel.start = select;
-                        } else {
+                        else {
                             if (runAction('ngDpEvtSelect', scope.ngDpModel.start, select, e) === false)
                                 return;
                             scope.ngDpModel.end = select;
@@ -199,13 +199,12 @@
                     start = scope.ngDpModel.start;
                     end = scope.ngDpModel.end;
                     if (start || end) {
-                        if (start - select === 0) {
+                        if (start - select === 0 || end - select === 0) {
                             cname.push('active');
-                            cname.push('start');
-                        }
-                        if (end - select === 0) {
-                            cname.push('active');
-                            cname.push('end');
+                            if (!disableOneDay && start - end === 0) {
+                                cname.push('start-end');
+                            } else 
+                                cname.push(start - select === 0 ? 'start' : 'end');
                         }
                         if (start && end && start - select < 0 && end - select > 0) {
                             cname.push('active');
@@ -217,7 +216,7 @@
                 scope.getMonth = function (day, date, index) {
                     var tmp = date.split('-');
                     return tmp[0] + '年' + tmp[1] + '月';
-                }
+                };
             }
         };
     }]);

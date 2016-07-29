@@ -6,13 +6,12 @@
  * @copyright Copyright &copy; 2015
  * @license http://www.madcoder.cn/license/
  */
-(function (DATEPICKER_DIRECTIVE) {
+(function (DATERANGEPICKER_DIRECTIVE) {
     var m = angular.module('ngDaterangePicker', []);
     m.version = '1.0.0';
 
-
     function getCalendar(year, month, from, end) {
-        var date = new Date(year, month, 1), start = date.getDay(), days = new Date(year, month + 1, 0).getDate(), day = 0, week = 0, i = 0, p = 0, cal = [], fromFlag = false;
+        var date = new Date(year, month, 1), start = date.getDay(), days = new Date(year, month + 1, 0).getDate(), day = 0, week = 0, i = 0, p = 0, cal = [], fromFlag = false, count;
         if (from) {
             var fromYear = from.getFullYear(), fromMon = from.getMonth();
             fromFlag = (date - new Date(fromYear, fromMon, 1));
@@ -33,14 +32,14 @@
             week++;
         }
         if (fromFlag === 0) {
-            var count = getMonthWeek(from);
+            count = getMonthWeek(from);
             cal = cal.slice(count - 1);
             cal[0] = cal[0].map(function (v) {
                 return (v < from.getDate()) ? '' : v;
             });
         }
         if (endFlag === 0) {
-            var count = getMonthWeek(end);
+            count = getMonthWeek(end);
             cal = cal.splice(0, count);
             cal[cal.length - 1] = cal[cal.length - 1].map(function (v) {
                 return (v <= end.getDate()) ? v : '';
@@ -98,7 +97,7 @@
                 var date = new Date(), today = date.getDate(), year = date.getFullYear(), month = date.getMonth(), 
                     months = [], monthData = {}, i = attrs.ngDpMonths, monthCount = i, startMonth = month, startYear = year, k, obj, tmp, startDate = null, fromDate = null, endDate = null;
 
-                var disableOld = !!(+attrs.ngDpDisableOld), showDays = attrs.ngDpDays;
+                var disableOld = !!(+attrs.ngDpDisableOld), disableOneDay = !!(+attrs.ngDpDisableOneday), showDays = attrs.ngDpDays;
 
                 date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
@@ -176,9 +175,9 @@
                         scope.ngDpModel.end = undefined;
                         scope.ngDpModel.start = select;
                     } else if (start) {
-                        if (select - start <= 0) {
+                        if (select - start < 0 || (select - start === 0 && disableOneDay))
                             scope.ngDpModel.start = select;
-                        } else {
+                        else {
                             if (runAction('ngDpEvtSelect', scope.ngDpModel.start, select, e) === false)
                                 return;
                             scope.ngDpModel.end = select;
@@ -200,13 +199,12 @@
                     start = scope.ngDpModel.start;
                     end = scope.ngDpModel.end;
                     if (start || end) {
-                        if (start - select === 0) {
+                        if (start - select === 0 || end - select === 0) {
                             cname.push('active');
-                            cname.push('start');
-                        }
-                        if (end - select === 0) {
-                            cname.push('active');
-                            cname.push('end');
+                            if (!disableOneDay && start - end === 0) {
+                                cname.push('start-end');
+                            } else 
+                                cname.push(start - select === 0 ? 'start' : 'end');
                         }
                         if (start && end && start - select < 0 && end - select > 0) {
                             cname.push('active');
@@ -218,7 +216,7 @@
                 scope.getMonth = function (day, date, index) {
                     var tmp = date.split('-');
                     return tmp[0] + '年' + tmp[1] + '月';
-                }
+                };
             }
         };
     }]);

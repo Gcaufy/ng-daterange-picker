@@ -161,7 +161,8 @@ body {margin: 0px; padding: 0px}
       background: #8fb5dd;
       color: #fff;
       &.start,
-      &.end {
+      &.end,
+      &.start-end {
         background: #76a1ce;
       }
       &.start:before {
@@ -171,7 +172,8 @@ body {margin: 0px; padding: 0px}
         content: "止";
       }
       &.start:before,
-      &.end:before {
+      &.end:before,
+      &.start-end:before {
         position: absolute;
         left: 0;
         right: 0;
@@ -179,6 +181,9 @@ body {margin: 0px; padding: 0px}
         color: #fff;
         font-size: 24 / @rem;
         transform: scale(16/24);
+      }
+      &.start-end:before{
+        content: "起／止"
       }
     }
     &.month {

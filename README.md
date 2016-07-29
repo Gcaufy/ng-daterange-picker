@@ -21,7 +21,7 @@ var app = angular.module('myApp', ['ngDaterangePicker']);
 ```
 HTML:
 ```html
-<ng-daterange-picker ng-dp-model="mydate" ng-dp-months="3" ng-dp-start-date="today" ng-dp-days="48" ng-dp-disable-old="0" ng-dp-evt-click="click" ng-dp-evt-select="select"></ng-daterange-picker>
+<ng-daterange-picker ng-dp-model="mydate" ng-dp-months="3" ng-dp-start-date="today" ng-dp-days="48" ng-dp-disable-old="0" ng-dp-disable-oneday="0" ng-dp-evt-click="click" ng-dp-evt-select="select"></ng-daterange-picker>
 ```
 
 ### 参数说明:
@@ -33,6 +33,7 @@ HTML:
 | ng-dp-start-date | String | 开始日期, 'today' 或者 '2016/07/26'. 与month参数冲突时, 优先以此参数计算
 | ng-dp-days | Number | 显示多少天, 与month参数冲突时, 优先以此参数计算
 | ng-dp-disable-old | boolean | 是否禁用小于今天的日期
+| ng-dp-disable-oneday | boolean | 是否禁用选择起止时间为同一天
 | ng-dp-evt-click | Function | 点击事件, 返回false取消选择
 | ng-dp-evt-select | Function | 选择成功事件, 返回false取消选择
 
