@@ -123,7 +123,7 @@
                 if (!isNaN(showDays)) {
                     tmp = +startDate + (showDays - 1) * 24 * 3600 * 1000;
                     endDate = new Date(tmp);
-                    monthCount = endDate.getMonth() - startDate.getMonth() + 1;
+                    monthCount = (endDate.getYear() - startDate.getYear()) * 12 + endDate.getMonth() - startDate.getMonth() + 1;
                     i = monthCount;
                 }
 
